@@ -1,15 +1,8 @@
 # mongo_core
 Mongodb docker container based on ubuntu_core image
 
-mongo is now available in the Docker Store, the new place to discover public Docker content. Check it out →
-docker logo
+[![](https://images.microbadger.com/badges/image/keyax/mongo_core.svg)](https://microbadger.com/images/keyax/mongo_core "Get your own image badge on microbadger.com")   [![](https://images.microbadger.com/badges/version/keyax/mongo_core.svg)](https://microbadger.com/images/keyax/mongo_core "Get your own version badge on microbadger.com")
 
-OFFICIAL REPOSITORY
-mongo
-Last pushed: 15 days ago
-Repo Info
-Tags
-Short Description
 MongoDB document databases provide high availability and easy scalability.
 Full Description
 Supported tags and respective Dockerfile links
