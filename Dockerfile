@@ -60,7 +60,7 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-    mongodb-org \
+    mongodb-org
 #		${MONGO_PACKAGE}=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-server=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
