@@ -74,10 +74,11 @@ RUN mkdir -p /data/db /data/configdb \
 	&& chown -R mongodb:mongodb /data/db /data/configdb
 VOLUME /data/db /data/configdb
 
+EXPOSE 27017
+
 COPY docker-entrypoint.sh /home/entrypoint.sh
 RUN chmod +x /home/entrypoint.sh
-ENTRYPOINT ["/home/entrypoint.sh"]
 
-EXPOSE 27017
-CMD ["/bin/bash; ls"]
+ENTRYPOINT ["/home/entrypoint.sh"]
+CMD ["mongod"]
 # Contact GitHub API Training Shop Blog About
