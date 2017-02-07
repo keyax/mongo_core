@@ -1,7 +1,11 @@
 FROM keyax/ubuntu_core
 
-LABEL maintainer "yones.lebady AT gmail.com")
-# MAINTAINER Yones Lebady (yones.lebady AT gmail.com)
+LABEL maintainer "yones.lebady AT gmail.com" \
+      net.keyax.os= "ubuntu core" \
+      net.keyax.os.ver= "16.10 yaketty" \
+      net.keyax.vendor= "Keyax" \
+      net.keyax.app= "Mongodb" \
+      net.keyay.app.ver= "2.1"
 
 # FROM debian:jessie
 
@@ -54,20 +58,15 @@ ENV MONGO_PACKAGE mongodb-org
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
 # RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
-# https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-# RUN sudo apt-get install -y mongodb-org
-
 RUN set -x \
 	&& apt-get update \
-	&& apt-get install -y \
-# https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-    mongodb-org
+	&& apt-get install -y mongodb-org \
 #		${MONGO_PACKAGE}=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-server=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-mongos=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-tools=$MONGO_VERSION \
-#  && rm -rf /var/lib/apt/lists/* \
+  && rm -rf /var/lib/apt/lists/* \
 # && rm -rf /var/lib/mongodb
 #	&& mv /etc/mongod.conf /etc/mongod.conf.orig
 
