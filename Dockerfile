@@ -1,6 +1,7 @@
 FROM keyax/ubuntu_core
 
-MAINTAINER Yones Lebady (yones.lebady AT gmail.com)
+LABEL maintainer "yones.lebady AT gmail.com")
+# MAINTAINER Yones Lebady (yones.lebady AT gmail.com)
 
 # FROM debian:jessie
 
