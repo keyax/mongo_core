@@ -1,11 +1,11 @@
 FROM keyax/ubuntu_core
 
 LABEL maintainer "yones.lebady AT gmail.com" \
-      "net.keyax.os=ubuntu core" \
-      "net.keyax.os.ver=16.10 yaketty" \
-      "net.keyax.vendor=Keyax" \
-      "net.keyax.app=Mongodb 3.4.1" \
-      "net.keyay.app.ver=2.1"
+      keyax.os "ubuntu core" \
+      keyax.os.ver "16.10 yaketty" \
+      keyax.vendor "Keyax" \
+      keyax.app "Mongodb 3.4.1" \
+      keyax.app.ver "2.1"
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
@@ -77,6 +77,6 @@ EXPOSE 27017
 COPY docker-entrypoint.sh /home/entrypoint.sh
 RUN chmod +x /home/entrypoint.sh
 
-ENTRYPOINT ["/home/entrypoint.sh" ]
-CMD [ "mongod" ]
+ENTRYPOINT ["/home/entrypoint.sh", "mongod" ]
+# CMD [ "mongod" ]
 # Contact GitHub API Training Shop Blog About
