@@ -1,13 +1,11 @@
 FROM keyax/ubuntu_core
 
 LABEL maintainer "yones.lebady AT gmail.com"
-# LABEL net.keyax.os= "ubuntu core" \
-#      net.keyax.os.ver= "16.10 yaketty" \
-#      net.keyax.vendor= "Keyax" \
-#      net.keyax.app= "Mongodb" \
-#      net.keyay.app.ver= "2.1"
-
-# FROM debian:jessie
+LABEL "net.keyax.os=ubuntu core" \
+      "net.keyax.os.ver=16.10 yaketty" \
+      "net.keyax.vendor=Keyax" \
+      "net.keyax.app=Mongodb 3.4.1" \
+      "net.keyay.app.ver=2.1"
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
