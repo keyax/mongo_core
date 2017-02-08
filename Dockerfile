@@ -1,7 +1,7 @@
 FROM keyax/ubuntu_core
 
-LABEL maintainer "yones.lebady AT gmail.com"
-LABEL "net.keyax.os=ubuntu core" \
+LABEL maintainer "yones.lebady AT gmail.com" \
+      "net.keyax.os=ubuntu core" \
       "net.keyax.os.ver=16.10 yaketty" \
       "net.keyax.vendor=Keyax" \
       "net.keyax.app=Mongodb 3.4.1" \
@@ -12,8 +12,8 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		numactl \
-	&& rm -rf /var/lib/apt/lists/*
+		numactl
+#	&& rm -rf /var/lib/apt/lists/*
 
 # grab gosu for easy step-down from root
 # ENV GOSU_VERSION 1.7
