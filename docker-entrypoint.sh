@@ -11,11 +11,11 @@ if [ "$1" = 'mongod' -a "$(id -u)" = '0' ]; then
 	exec su mongodb "$BASH_SOURCE" "$@"
 fi
 
-if [ "$1" = 'mongod' ]; then
-	numa='numactl --interleave=all'
-	if $numa true &> /dev/null; then
-		set -- $numa "$@"
-	fi
-fi
+# if [ "$1" = 'mongod' ]; then
+# 	numa='numactl --interleave=all'
+# 	if $numa true &> /dev/null; then
+#		  set -- $numa "$@"
+#	  fi
+# fi
 
 exec "$@"

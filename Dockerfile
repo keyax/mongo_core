@@ -10,9 +10,9 @@ LABEL maintainer "yones.lebady AT gmail.com" \
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
-		numactl
+# RUN apt-get update \
+# 	&& apt-get install -y --no-install-recommends \
+#    		numactl
 #	&& rm -rf /var/lib/apt/lists/*
 
 # grab gosu for easy step-down from root
@@ -77,6 +77,6 @@ EXPOSE 27017
 COPY docker-entrypoint.sh /home/entrypoint.sh
 RUN chmod +x /home/entrypoint.sh
 
-ENTRYPOINT ["/home/entrypoint.sh", "mongod&" ]
+ENTRYPOINT ["/home/entrypoint.sh", "mongod" ]
 CMD ["/bin/bash"]
 # Contact GitHub API Training Shop Blog About
