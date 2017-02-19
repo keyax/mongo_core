@@ -12,7 +12,7 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
  RUN apt-get update \
  	&& apt-get install -y --no-install-recommends \
-    		numactl
+    		numactl \
   && apt-get autoremove && apt-get clean \
 # delete all the apt list files since they're big and get stale quickly
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
