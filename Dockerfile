@@ -1,11 +1,11 @@
 FROM keyax/ubuntu_core
 
-LABEL maintainer "yones.lebady AT gmail.com" \
-      keyax.os "ubuntu core" \
-      keyax.os.ver "16.10 yaketty" \
-      keyax.vendor "Keyax" \
-      keyax.app "Mongodb 3.4.1" \
-      keyax.app.ver "2.1"
+LABEL maintainer="yones.lebady AT gmail.com" \
+      keyax.os="ubuntu core" \
+      keyax.os.ver="16.10 yaketty" \
+      keyax.vendor="Keyax" \
+      keyax.app="Mongodb 3.4.1" \
+      keyax.app.ver="2.1"
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
@@ -13,7 +13,10 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
  RUN apt-get update \
  	&& apt-get install -y --no-install-recommends \
     		numactl
-	&& rm -rf /var/lib/apt/lists/*
+  && apt-get autoremove && apt-get clean \
+# delete all the apt list files since they're big and get stale quickly
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# this forces "apt-get update" in dependent images, which is also good
 
 # grab gosu for easy step-down from root
 # ENV GOSU_VERSION 1.7
