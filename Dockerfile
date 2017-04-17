@@ -4,8 +4,19 @@ LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
       keyax.os.ver="16.10 yaketty" \
       keyax.vendor="Keyax" \
-      keyax.app="Mongodb 3.4.1" \
+      keyax.app="Mongodb 3.4.3" \
       keyax.app.ver="2.1"
+
+      # RedHat Warning: Transparent hugepages looks to be active and should not be.
+      # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
+      # RUN echo never > /sys/kernel/mm/transparent_hugepage/enabled
+      # Ubuntu disabling transparent hugepages
+      RUN echo kernel/mm/transparent_hugepage/enabled = never > /etc/sysfs.conf
+      # Warning: Swappiness is not set to 0.
+      # Please look at http://bit.ly/1k2CtNn as for how to PERMANENTLY alter this setting.
+      # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
+      # Ubuntu set swappiness 0
+      RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
@@ -50,7 +61,7 @@ RUN set -ex; \
 # RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
 ENV MONGO_MAJOR 3.4
-ENV MONGO_VERSION 3.4.1
+ENV MONGO_VERSION 3.4.3
 ENV MONGO_PACKAGE mongodb-org
 
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
@@ -70,19 +81,6 @@ RUN set -x \
   && rm -rf /var/lib/apt/lists/* \
 # && rm -rf /var/lib/mongodb
 #	&& mv /etc/mongod.conf /etc/mongod.conf.orig
-
-# RedHat Warning: Transparent hugepages looks to be active and should not be.
-# Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
-# RUN echo never > /sys/kernel/mm/transparent_hugepage/enabled
-# Ubuntu disabling transparent hugepages
-RUN echo kernel/mm/transparent_hugepage/enabled = never > /etc/sysfs.conf
-# Warning: Swappiness is not set to 0.
-# Please look at http://bit.ly/1k2CtNn as for how to PERMANENTLY alter this setting.
-# RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
-# Ubuntu set swappiness 0
-RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
-
-
   && mkdir -p /data/db /data/configdb \
 	&& chown -R mongodb:mongodb /data/db /data/configdb
 VOLUME /data/db /data/configdb
