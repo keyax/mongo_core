@@ -16,7 +16,7 @@ RUN echo never > /sys/kernel/mm/transparent_hugepage/defrag
       # Warning: Swappiness is not set to 0.
       # Please look at http://bit.ly/1k2CtNn as for how to PERMANENTLY alter this setting.
       # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
-      # Ubuntu set swappiness 0
+      # Ubuntu set swappiness 0  
 RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
