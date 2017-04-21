@@ -80,7 +80,8 @@ VOLUME /data/db /data/configdb
 
 # RedHat Warning: Transparent hugepages looks to be active and should not be.
 # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
-RUN echo 'always madvise [never]' > /sys/kernel/mm/transparent_hugepage/enabled
+##RUN echo 'always madvise [never]' > /sys/kernel/mm/transparent_hugepage/enabled
+RUN echo 'kernel/mm/transparent_hugepage/enabled = never' > /etc/sysfs.conf
 ##RUN echo never > /sys/kernel/mm/transparent_hugepage/defrag
 # Ubuntu disabling transparent hugepages
 #      RUN echo /sys/kernel/mm/transparent_hugepage/enabled = never > /etc/sysfs.conf
