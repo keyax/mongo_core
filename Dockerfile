@@ -7,17 +7,6 @@ LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.app="Mongodb 3.4.3" \
       keyax.app.ver="2.1"
 
-      # RedHat Warning: Transparent hugepages looks to be active and should not be.
-      # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
-RUN echo 'always madvise [never]' > /sys/kernel/mm/transparent_hugepage/enabled
-##RUN echo never > /sys/kernel/mm/transparent_hugepage/defrag
-      # Ubuntu disabling transparent hugepages
-#      RUN echo /sys/kernel/mm/transparent_hugepage/enabled = never > /etc/sysfs.conf
-      # Warning: Swappiness is not set to 0.
-      # Please look at http://bit.ly/1k2CtNn as for how to PERMANENTLY alter this setting.
-      # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
-      # Ubuntu set swappiness 0
-RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
@@ -88,6 +77,18 @@ RUN set -x \
   && mkdir -p /data/db /data/configdb \
 	&& chown -R mongodb:mongodb /data/db /data/configdb
 VOLUME /data/db /data/configdb
+
+# RedHat Warning: Transparent hugepages looks to be active and should not be.
+# Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
+RUN echo 'always madvise [never]' > /sys/kernel/mm/transparent_hugepage/enabled
+##RUN echo never > /sys/kernel/mm/transparent_hugepage/defrag
+# Ubuntu disabling transparent hugepages
+#      RUN echo /sys/kernel/mm/transparent_hugepage/enabled = never > /etc/sysfs.conf
+# Warning: Swappiness is not set to 0.
+# Please look at http://bit.ly/1k2CtNn as for how to PERMANENTLY alter this setting.
+# RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
+# Ubuntu set swappiness 0
+RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 EXPOSE 27017
 
