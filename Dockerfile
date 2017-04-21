@@ -16,7 +16,7 @@ RUN echo never > /sys/kernel/mm/transparent_hugepage/defrag
       # Warning: Swappiness is not set to 0.
       # Please look at http://bit.ly/1k2CtNn as for how to PERMANENTLY alter this setting.
       # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
-      # Ubuntu set swappiness 0  
+      # Ubuntu set swappiness 0
 RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -68,12 +68,13 @@ ENV MONGO_PACKAGE mongodb-org
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # RUN echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu zesty/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
 # RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y mongodb-org \
+                        sysfsutils \
 #		${MONGO_PACKAGE}=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-server=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
@@ -82,6 +83,7 @@ RUN set -x \
   && rm -rf /var/lib/apt/lists/* \
 # && rm -rf /var/lib/mongodb
 #	&& mv /etc/mongod.conf /etc/mongod.conf.orig
+  && echo kernel/mm/transparent_hugepage/enabled = never >> /etc/sysfs.conf \
   && mkdir -p /data/db /data/configdb \
 	&& chown -R mongodb:mongodb /data/db /data/configdb
 VOLUME /data/db /data/configdb
