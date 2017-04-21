@@ -73,7 +73,7 @@ ENV MONGO_PACKAGE mongodb-org
 
 RUN set -x \
 	&& apt-get update \
-	&& apt-get install -y mongodb
+	&& apt-get install -y mongodb \
 ##                       mongodb-org \
                         sysfsutils \
 #		${MONGO_PACKAGE}=$MONGO_VERSION \
