@@ -54,8 +54,9 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
 # gpg keys for release 3.6 listed at https://
 RUN ["/bin/bash", "-c",  "set -ex; \
-            gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5;
+            gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \
             gpg --armor --export 58712A2291FA4AD5 | apt-key add -"]
+# to enable key & remove gpg: WARNING: options in `/root/.gnupg/gpg.conf' are not yet active during this run
 
 ENV MONGO_MAJOR 3.5
 ENV MONGO_VERSION 3.5.6
