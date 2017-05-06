@@ -70,9 +70,11 @@ RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR
 
 RUN set -x \
 	&& apt-get update \
-	&& apt-get install -y \
-##                      mongodb \
-                       mongodb-org-unstable \
+	&& apt-get install -y
+      --allow-unauthenticated\
+      mongodb-org-unstable \
+## from ubuntu repo version 3.2.11
+##    mongodb \
 #		${MONGO_PACKAGE}=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-server=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
