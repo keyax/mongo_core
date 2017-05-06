@@ -2,23 +2,23 @@ FROM keyax/ubuntu_core
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
-      keyax.os.ver="16.10 yaketty" \
+      keyax.os.ver="17.04 zesty" \
       keyax.vendor="Keyax" \
-      keyax.app="Mongodb 3.4.3" \
+      keyax.app="Mongodb 3.5.6" \
       keyax.app.ver="2.1"
 
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
- RUN apt-get update \
- 	&& apt-get install -y \
+### RUN apt-get update \
+### 	&& apt-get install -y \
   ## --no-install-recommends \
-  sysfsutils \
+###  sysfsutils \
 ##    		numactl \
-  && apt-get autoremove && apt-get clean \
+###  && apt-get autoremove && apt-get clean \
 # delete all the apt list files since they're big and get stale quickly
-  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+###  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # this forces "apt-get update" in dependent images, which is also good
 
 # grab gosu for easy step-down from root
@@ -52,29 +52,30 @@ RUN set -ex; \
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
-ENV MONGO_MAJOR 3.4
-ENV MONGO_VERSION 3.4.4
+ENV MONGO_MAJOR 3.5
+ENV MONGO_VERSION 3.5.6
 ENV MONGO_PACKAGE mongodb-org
 
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # RUN echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
-## RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
 # RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 RUN set -x \
 	&& apt-get update \
-	&& apt-get install -y mongodb \
-##                       mongodb-org \
-#		${MONGO_PACKAGE}=$MONGO_VERSION \
-#		${MONGO_PACKAGE}-server=$MONGO_VERSION \
-#		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
-#		${MONGO_PACKAGE}-mongos=$MONGO_VERSION \
-#		${MONGO_PACKAGE}-tools=$MONGO_VERSION \
+	&& apt-get install -y
+##                      mongodb \
+                       mongodb-org \
+		${MONGO_PACKAGE}=$MONGO_VERSION \
+		${MONGO_PACKAGE}-server=$MONGO_VERSION \
+		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
+		${MONGO_PACKAGE}-mongos=$MONGO_VERSION \
+		${MONGO_PACKAGE}-tools=$MONGO_VERSION \
   && rm -rf /var/lib/apt/lists/* \
 # && rm -rf /var/lib/mongodb
 #	&& mv /etc/mongod.conf /etc/mongod.conf.orig
-  && echo kernel/mm/transparent_hugepage/enabled = never >> /etc/sysfs.conf \
+###  && echo kernel/mm/transparent_hugepage/enabled = never >> /etc/sysfs.conf \
   && mkdir -p /data/db /data/configdb \
 	&& chown -R mongodb:mongodb /data/db /data/configdb
 VOLUME /data/db /data/configdb
@@ -82,7 +83,7 @@ VOLUME /data/db /data/configdb
 # RedHat Warning: Transparent hugepages looks to be active and should not be.
 # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
 ## RUN echo 'always madvise [never]' > /sys/kernel/mm/transparent_hugepage/enabled
-RUN echo 'kernel/mm/transparent_hugepage/enabled = never' > /etc/sysfs.conf
+####RUN echo 'kernel/mm/transparent_hugepage/enabled = never' > /etc/sysfs.conf
 ##RUN echo never > /sys/kernel/mm/transparent_hugepage/defrag
 # Ubuntu disabling transparent hugepages
 #      RUN echo /sys/kernel/mm/transparent_hugepage/enabled = never > /etc/sysfs.conf
@@ -90,7 +91,7 @@ RUN echo 'kernel/mm/transparent_hugepage/enabled = never' > /etc/sysfs.conf
 # Please look at http://bit.ly/1k2CtNn as for how to PERMANENTLY alter this setting.
 # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
 # Ubuntu set swappiness 0
-RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
+####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 EXPOSE 27017
 
