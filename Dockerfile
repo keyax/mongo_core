@@ -52,7 +52,7 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
-# gpg keys listed at https://
+# gpg keys for release 3.6 listed at https://
 RUN ["/bin/bash", "-c",  "set -ex; \
             gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5;
             gpg --armor --export 58712A2291FA4AD5 | apt-key add -"]
