@@ -4,7 +4,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
       keyax.os.ver="17.04 zesty" \
       keyax.vendor="Keyax" \
-      keyax.app="Mongodb 3.5.6" \
+      keyax.app="Mongodb 3.4.4" \
       keyax.app.ver="2.1"
 
 

@@ -5,8 +5,8 @@ Mongodb docker container based on ubuntu_core image
 
 MongoDB document databases provide high availability and easy scalability.
 
-Supported tags keyax, ubuntu, core, 16.10, yakketyand respective Dockerfile links
-3.4.1, 3.4, 3, latest (3.4/Dockerfile)
+Supported tags keyax, ubuntu, core, 16.04, xenial and respective Dockerfile links
+3.4.4, 3.4, 3, latest (3.4/Dockerfile)
 For more information about this image and its history, please see the relevant manifest file (library/mongo). This image is updated via pull requests to the docker-library/official-images GitHub repo.
 
 For detailed information about the virtual/transfer sizes and individual layers of each of the above supported tags, please see the repos/mongo/tag-details.md file in the docker-library/repo-info GitHub repo.
