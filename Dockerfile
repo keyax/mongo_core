@@ -74,7 +74,7 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
 ## from mongodb repo dev version 3.5.6
-      --allow-unauthenticated\
+##      --allow-unauthenticated\
       mongodb-org-unstable \
 ## from mongodb repo production version 3.4.4
 ##    mongodb-org \
