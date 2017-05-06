@@ -50,7 +50,7 @@ RUN set -ex; \
 	apt-key list
 
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-# RUN sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
+# RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
 ENV MONGO_MAJOR 3.5
 ENV MONGO_VERSION 3.5.6
@@ -67,11 +67,11 @@ RUN set -x \
 	&& apt-get install -y \
 ##                      mongodb \
                        mongodb-org \
-		${MONGO_PACKAGE}=$MONGO_VERSION \
-		${MONGO_PACKAGE}-server=$MONGO_VERSION \
-		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
-		${MONGO_PACKAGE}-mongos=$MONGO_VERSION \
-		${MONGO_PACKAGE}-tools=$MONGO_VERSION \
+#		${MONGO_PACKAGE}=$MONGO_VERSION \
+#		${MONGO_PACKAGE}-server=$MONGO_VERSION \
+#		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
+#		${MONGO_PACKAGE}-mongos=$MONGO_VERSION \
+#		${MONGO_PACKAGE}-tools=$MONGO_VERSION \
   && rm -rf /var/lib/apt/lists/* \
 # && rm -rf /var/lib/mongodb
 #	&& mv /etc/mongod.conf /etc/mongod.conf.orig
