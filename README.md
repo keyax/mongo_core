@@ -1,5 +1,5 @@
 # mongo_core
-Mongodb docker container based on ubuntu_core image
+Mongodb version 3.4.4 for Ubuntu 16.04 LTS xenial docker container.
 
 [![](https://images.microbadger.com/badges/image/keyax/mongo_core.svg)](https://microbadger.com/images/keyax/mongo_core "Get your own image badge on microbadger.com")   [![](https://images.microbadger.com/badges/version/keyax/mongo_core.svg)](https://microbadger.com/images/keyax/mongo_core "Get your own version badge on microbadger.com")
 

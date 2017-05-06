@@ -2,10 +2,10 @@ FROM keyax/ubuntu_core
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
-      keyax.os.ver="17.04 zesty" \
+      keyax.os.ver="16.04 xenial" \
       keyax.vendor="Keyax" \
       keyax.app="Mongodb 3.4.4" \
-      keyax.app.ver="2.1"
+      keyax.app.ver="2.2"
 
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -52,14 +52,16 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
-ENV MONGO_MAJOR 3.4
-ENV MONGO_VERSION 3.4.4
+ENV MONGO_MAJOR 3.5
+ENV MONGO_VERSION 3.5.6
 ENV MONGO_PACKAGE mongodb-org
 
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # RUN echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
+
 # RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 RUN set -x \
