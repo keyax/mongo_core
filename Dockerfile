@@ -72,7 +72,7 @@ RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
 ##                      mongodb \
-                       mongodb-org \
+                       mongodb-org-unstable \
 #		${MONGO_PACKAGE}=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-server=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
