@@ -64,7 +64,7 @@ RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR
 
 RUN set -x \
 	&& apt-get update \
-	&& apt-get install -y
+	&& apt-get install -y \
 ##                      mongodb \
                        mongodb-org \
 		${MONGO_PACKAGE}=$MONGO_VERSION \
