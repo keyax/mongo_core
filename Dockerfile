@@ -50,7 +50,7 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 ##	apt-key list
 
 
-# gpg keys for release 3.5.x dev & 3.6 listed at building docker 
+# gpg keys for release 3.5.x dev & 3.6 listed at building docker
 RUN ["/bin/bash", "-c",  "set -ex; \
             gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \
             gpg --armor --export 58712A2291FA4AD5 | apt-key add -"]
@@ -67,8 +67,6 @@ ENV MONGO_PACKAGE mongodb-org
 # RUN echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
-# RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
-
 # RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 RUN set -x \
