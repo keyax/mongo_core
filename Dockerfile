@@ -4,7 +4,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
       keyax.os.ver="16.04 xenial" \
       keyax.vendor="Keyax" \
-      keyax.app="Mongodb 3.4.4" \
+      keyax.app="Mongodb 3.5.6 dev" \
       keyax.app.ver="2.2"
 
 
@@ -49,14 +49,15 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 ##	rm -r "$GNUPGHOME"; \
 ##	apt-key list
 
-# https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-# RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
-# gpg keys for release 3.6 listed at https://
+# gpg keys for release 3.5.x dev & 3.6 listed at building docker 
 RUN ["/bin/bash", "-c",  "set -ex; \
             gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \
             gpg --armor --export 58712A2291FA4AD5 | apt-key add -"]
 # to enable key & remove gpg: WARNING: options in `/root/.gnupg/gpg.conf' are not yet active during this run
+
+# version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+# RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
 ENV MONGO_MAJOR 3.5
 ENV MONGO_VERSION 3.5.6
