@@ -111,6 +111,6 @@ EXPOSE 27017
 # RUN chmod +x /home/entrypoint.sh
 ENV AUTH --auth
 RUN echo "auth: $AUTH"
-ENTRYPOINT ["/home/entrypoint.sh", "mongod --auth" ]
+ENTRYPOINT ["/home/entrypoint.sh", "mongod --auth --bind_ip_all" ]
 # CMD [ "$AUTH" ]
 # Contact GitHub API Training Shop Blog About
