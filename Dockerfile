@@ -10,7 +10,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
-USER mongodb
+
 ### RUN apt-get update \
 ### 	&& apt-get install -y \
   ## --no-install-recommends \
@@ -106,7 +106,7 @@ VOLUME /data/db /data/configdb /home
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 EXPOSE 27017
-
+USER mongodb
 # COPY entrypoint.sh /home/entrypoint.sh
 # RUN chmod +x /home/entrypoint.sh
 ENV AUTH --auth
