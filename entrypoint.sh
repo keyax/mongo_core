@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-
+su -l mongodb
 if [ "${1:0:1}" = '-' ]; then
 	set -- mongod "$@"
 fi
@@ -18,4 +18,4 @@ if [ "$1" = 'mongod' ]; then
   fi
 fi
 # eval su mongodb
-eval "$@"
+eval "$@" -f /home/mongod.conf
