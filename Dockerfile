@@ -107,8 +107,8 @@ VOLUME /data/db /data/configdb /home/entrypoint.sh
 
 EXPOSE 27017
 
-COPY docker-entrypoint.sh /home/entrypoint.sh
-RUN chmod +x /home/entrypoint.sh
+# COPY docker-entrypoint.sh /home/entrypoint.sh
+# RUN chmod +x /home/entrypoint.sh
 ENV AUTH --auth
 RUN echo "auth: $AUTH"
 ENTRYPOINT ["/home/entrypoint.sh", "mongod " ]
