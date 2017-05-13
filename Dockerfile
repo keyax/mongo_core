@@ -110,6 +110,6 @@ EXPOSE 27017
 COPY docker-entrypoint.sh /home/entrypoint.sh
 RUN chmod +x /home/entrypoint.sh
 
-ENTRYPOINT ["/home/entrypoint.sh", "mongod ", "$AUTH" ]
+ENTRYPOINT ["/home/entrypoint.sh", "mongod ", "--auth" ]
 # CMD [ "--auth" ]
 # Contact GitHub API Training Shop Blog About
