@@ -17,5 +17,5 @@ if [ "$1" = 'mongod' ]; then
 		  set -- $numa "$@"
   fi
 fi
-
+echo "$@"
 exec "$@"
