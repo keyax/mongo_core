@@ -107,10 +107,10 @@ VOLUME /data/db /data/configdb /home
 
 EXPOSE 27017
 
-# COPY docker-entrypoint.sh /home/entrypoint.sh
+# COPY entrypoint.sh /home/entrypoint.sh
 # RUN chmod +x /home/entrypoint.sh
 ENV AUTH --auth
 RUN echo "auth: $AUTH"
 ENTRYPOINT ["/home/entrypoint.sh", "mongod " ]
-# CMD [ "--auth" ]
+CMD [ "$AUTH" ]
 # Contact GitHub API Training Shop Blog About
