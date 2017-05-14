@@ -104,7 +104,7 @@ VOLUME /data/db /data/configdb /home
 # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
 # Ubuntu set swappiness 0
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
-USER mongodb
+# USER mongodb
 
 EXPOSE 27017
 
