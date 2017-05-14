@@ -10,7 +10,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
-USER mongodb
+
 ### RUN apt-get update \
 ### 	&& apt-get install -y \
   ## --no-install-recommends \
@@ -104,6 +104,7 @@ VOLUME /data/db /data/configdb /home
 # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
 # Ubuntu set swappiness 0
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
+USER mongodb
 
 EXPOSE 27017
 
