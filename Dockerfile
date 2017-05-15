@@ -110,8 +110,7 @@ EXPOSE 27017
 
 # COPY entrypoint.sh /home/entrypoint.sh
 # RUN chmod +x /home/entrypoint.sh
-ENV AUTH --auth
-RUN echo "auth: $AUTH"
-ENTRYPOINT ["/home/entrypoint.sh", "mongod $AUTH" ]
+ENV PARAMS
+ENTRYPOINT ["/home/entrypoint.sh", "mongod $PARAMS" ]
 # CMD [ "$AUTH" ]
 # Contact GitHub API Training Shop Blog About
