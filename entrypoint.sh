@@ -18,4 +18,4 @@ if [ "$1" = 'mongod' ]; then
   fi
 fi
 # eval su mongodb
-exec "$@"  #--bind_ip_all -f /home/mongod.conf
+exec "$@"  #--auth --bind_ip_all -f /home/mongod.conf

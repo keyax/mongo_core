@@ -1,3 +1,8 @@
-docker run -tiP -v ~/github/mongo_core/data/db:/data/db \
-                -v ~/github/mongo_core/data/configdb:/data/configdb \
-                --name mongo$1 --rm keyax/mongo_core
+docker run -ti    \
+                -v /dockvols/mongo$1/db:/data/db \
+                -v /dockvols/mongo$1/config:/data/configdb \
+                -v /dockvols/mongo$1/log:/var/log/mongodb \
+                -v /home/yones/github/mongo_core:/home \
+                -e PARAMS="--auth" --name mongo$1 --rm keyax/mongo_core 
+
+#                -e PARAMS="--auth --bind_ip_all -f /home/mongod.conf"
