@@ -1,3 +1,6 @@
+# Keyax Framework: Nginx + Nodejs + MongoDB on Docker Swarm cluster.
+# MongoDB version 3.5.6 dev on Ubuntu Core 16.04 LTS xenial for Docker image.
+
 # mongo_core
 Mongodb version 3.4.4 for Ubuntu 16.04 LTS xenial docker container.
 
