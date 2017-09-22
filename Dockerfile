@@ -2,10 +2,10 @@ FROM keyax/ubuntu_core
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
-      keyax.os.ver="16.04 xenial" \
+      keyax.os.ver="16.04.3 xenial" \
       keyax.vendor="Keyax" \
-      keyax.app="Mongodb 3.5.6 dev" \
-      keyax.app.ver="2.2"
+      keyax.app="Mongodb 3.4.9" \
+      keyax.app.ver="2.75"
 
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -59,8 +59,10 @@ RUN ["/bin/bash", "-c",  "set -ex; \
 # version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6
 
-ENV MONGO_MAJOR 3.5
-ENV MONGO_VERSION 3.5.6
+ENV MONGO_MAJOR 3.4
+ENV MONGO_VERSION 3.4.9
+#ENV MONGO_MAJOR 3.5
+#ENV MONGO_VERSION 3.5.13
 ENV MONGO_PACKAGE mongodb-org
 
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
@@ -72,13 +74,13 @@ RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
-## from mongodb repo dev version 3.5.6
+## from mongodb repo dev version 3.5.13
 ##      --allow-unauthenticated\
-      mongodb-org-unstable \
-## from mongodb repo production version 3.4.4
-##    mongodb-org \
+##        mongodb-org-unstable \
+## from mongodb repo production version 3.4.9
+        mongodb-org \
 # from ubuntu repo version 3.2.11
-##    mongodb \
+##      mongodb \
 #		${MONGO_PACKAGE}=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-server=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
@@ -86,11 +88,15 @@ RUN set -x \
 #		${MONGO_PACKAGE}-tools=$MONGO_VERSION \
   && rm -rf /var/lib/apt/lists/* \
 # && rm -rf /var/lib/mongodb
-#	&& mv /etc/mongod.conf /etc/mongod.conf.orig
+	&& mv /etc/mongod.conf /etc/mongod.conf.orig
 ###  && echo kernel/mm/transparent_hugepage/enabled = never >> /etc/sysfs.conf \
-  && mkdir -p /data/db /data/configdb \
-	&& chown -R mongodb:mongodb /data/db /data/configdb
-VOLUME /data/db /data/configdb /home
+##  && mkdir -p /data/db /data/configdb \
+##	&& chown -R mongodb:mongodb /data/db /data/configdb
+  && mkdir -p /data/db \
+	&& chown -R mongodb:mongodb /data/db
+
+ADD /configdb /data/configdb
+#VOLUME /data/db /data/configdb /home
 
 # RedHat Warning: Transparent hugepages looks to be active and should not be.
 # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
@@ -104,13 +110,14 @@ VOLUME /data/db /data/configdb /home
 # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
 # Ubuntu set swappiness 0
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
-# USER mongodb
+
+USER mongodb
 
 EXPOSE 27017
 
 # COPY entrypoint.sh /home/entrypoint.sh
 # RUN chmod +x /home/entrypoint.sh
 ENV PARAMS " "
-ENTRYPOINT ["/home/entrypoint.sh", "mongod $PARAMS" ]
+ENTRYPOINT ["/data/configdb/entrypoint.sh", "mongod $PARAMS" ]
 # CMD [ "$AUTH" ]
 # Contact GitHub API Training Shop Blog About
