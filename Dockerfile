@@ -98,8 +98,8 @@ RUN set -x \
   && mkdir -p /data/db /data/configdb \
 	&& chown -R mongodb:mongodb /data/db /data/configdb
 
-ADD /configdb /data/configdb
-#VOLUME /data/db /data/configdb /home
+# ADD /configdb /data/configdb
+VOLUME /data/db /data/configdb /home
 
 # RedHat Warning: Transparent hugepages looks to be active and should not be.
 # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
