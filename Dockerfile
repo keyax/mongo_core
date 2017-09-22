@@ -95,8 +95,8 @@ RUN set -x \
 ###  && echo kernel/mm/transparent_hugepage/enabled = never >> /etc/sysfs.conf \
 ##  && mkdir -p /data/db /data/configdb \
 ##	&& chown -R mongodb:mongodb /data/db /data/configdb
-  && mkdir -p /data/db \
-	&& chown -R mongodb:mongodb /data/db
+  && mkdir -p /data/db /data/configdb \
+	&& chown -R mongodb:mongodb /data/db /data/configdb
 
 ADD /configdb /data/configdb
 #VOLUME /data/db /data/configdb /home
