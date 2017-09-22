@@ -78,6 +78,7 @@ RUN set -x \
 ##      --allow-unauthenticated\
 ##        mongodb-org-unstable \
 ## from mongodb repo production version 3.4.9
+      --allow-unauthenticated\
         mongodb-org \
 # from ubuntu repo version 3.2.11
 ##      mongodb \
