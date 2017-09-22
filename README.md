@@ -1,15 +1,16 @@
 # Keyax Framework: Nginx + Nodejs + MongoDB on Docker Swarm cluster.
-# MongoDB version 3.5.6 dev on Ubuntu Core 16.04 LTS xenial for Docker image.
+# MongoDB version 3.4.9 on Ubuntu Core 16.04.3 LTS xenial for Docker image.
 
 # mongo_core
-Mongodb version 3.4.4 for Ubuntu 16.04 LTS xenial docker container.
+Mongodb version 3.4.9 for Ubuntu 16.04.3 LTS xenial docker container.
+Latest development release 3.5.13
 
 [![](https://images.microbadger.com/badges/image/keyax/mongo_core.svg)](https://microbadger.com/images/keyax/mongo_core "Get your own image badge on microbadger.com")   [![](https://images.microbadger.com/badges/version/keyax/mongo_core.svg)](https://microbadger.com/images/keyax/mongo_core "Get your own version badge on microbadger.com")
 
 MongoDB document databases provide high availability and easy scalability.
 
 Supported tags keyax, ubuntu, core, 16.04, xenial and respective Dockerfile links
-3.4.4, 3.4, 3, latest (3.4/Dockerfile)
+3.4.9, 3.4, 3, latest (3.4/Dockerfile)
 For more information about this image and its history, please see the relevant manifest file (library/mongo). This image is updated via pull requests to the docker-library/official-images GitHub repo.
 
 For detailed information about the virtual/transfer sizes and individual layers of each of the above supported tags, please see the repos/mongo/tag-details.md file in the docker-library/repo-info GitHub repo.
