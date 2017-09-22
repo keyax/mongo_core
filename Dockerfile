@@ -91,7 +91,7 @@ RUN set -x \
 #		${MONGO_PACKAGE}-tools=$MONGO_VERSION \
   && rm -rf /var/lib/apt/lists/* \
 # && rm -rf /var/lib/mongodb
-	&& mv /etc/mongod.conf /etc/mongod.conf.orig 
+	&& mv /etc/mongod.conf /etc/mongod.conf.orig
 ###  && echo kernel/mm/transparent_hugepage/enabled = never >> /etc/sysfs.conf \
 ##  && mkdir -p /data/db /data/configdb \
 ##	&& chown -R mongodb:mongodb /data/db /data/configdb
@@ -99,7 +99,7 @@ RUN set -x \
 #	&& chown -R mongodb:mongodb /data/db /data/configdb
 
 # ADD /configdb /data/configdb
-# VOLUME /data/db /data/configdb /home
+VOLUME /data/db /data/configdb
 
 # RedHat Warning: Transparent hugepages looks to be active and should not be.
 # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
@@ -114,7 +114,7 @@ RUN set -x \
 # Ubuntu set swappiness 0
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
-USER mongodb
+## USER mongodb
 
 EXPOSE 27017
 

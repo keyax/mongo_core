@@ -17,5 +17,6 @@ if [ "$1" = 'mongod' ]; then
 		  set -- $numa "$@"
   fi
 fi
-# exec su mongodb 
-eval "$@"  #--auth --bind_ip_all -f /data/configdb/mongod.conf
+# exec su mongodb
+eval "$@"
+ #--auth --bind_ip_all -f /data/configdb/mongod.conf
