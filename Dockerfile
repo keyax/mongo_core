@@ -9,7 +9,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
+# RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
 ### RUN apt-get update \
 ### 	&& apt-get install -y \
@@ -95,11 +95,10 @@ RUN set -x \
 ###  && echo kernel/mm/transparent_hugepage/enabled = never >> /etc/sysfs.conf \
 ##  && mkdir -p /data/db /data/configdb \
 ##	&& chown -R mongodb:mongodb /data/db /data/configdb
-# && mkdir -p /data/db /data/configdb \
-#	&& chown -R mongodb:mongodb /data/db /data/configdb
+
+# VOLUME /data/db /data/configdb
 
 # ADD /configdb /data/configdb
-VOLUME /data/db /data/configdb
 
 # RedHat Warning: Transparent hugepages looks to be active and should not be.
 # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
