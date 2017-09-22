@@ -58,8 +58,8 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
 # version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 RUN ["/bin/bash", "-c",  "set -ex; \
-      apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6;
-      gpg --armor --export 0C49F3730359A14518585931BC711F9BA15703C6 | apt-key add -"]
+      apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6;"]
+#      gpg --armor --export 0C49F3730359A14518585931BC711F9BA15703C6 | apt-key add -"]
 
 ENV MONGO_MAJOR 3.4
 ENV MONGO_VERSION 3.4.9
@@ -80,7 +80,7 @@ RUN set -x \
 ##      --allow-unauthenticated\
 ##        mongodb-org-unstable \
 ## from mongodb repo production version 3.4.9
-      --allow-unauthenticated\
+##      --allow-unauthenticated\
         mongodb-org \
 # from ubuntu repo version 3.2.11
 ##      mongodb \
