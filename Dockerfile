@@ -51,9 +51,9 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 
 
 # gpg keys for release 3.5.x dev & 3.6 listed at building docker
-##RUN ["/bin/bash", "-c",  "set -ex; \
-##            gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \
-##            gpg --armor --export 58712A2291FA4AD5 | apt-key add -"]
+RUN ["/bin/bash", "-c",  "set -ex; \
+            gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \
+            gpg --armor --export 58712A2291FA4AD5 | apt-key add -"]
 # to enable key & remove gpg: WARNING: options in `/root/.gnupg/gpg.conf' are not yet active during this run
 
 # version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
@@ -62,7 +62,7 @@ RUN ["/bin/bash", "-c",  "set -ex; \
 #      gpg --armor --export 0C49F3730359A14518585931BC711F9BA15703C6 | apt-key add -"]
 
 ENV MONGO_MAJOR 3.6
-ENV MONGO_VERSION 3.6.9
+ENV MONGO_VERSION 3.6.4
 # ENV MONGO_MAJOR 3.4
 # ENV MONGO_VERSION 3.4.9
 #ENV MONGO_MAJOR 3.5
