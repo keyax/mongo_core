@@ -1,5 +1,5 @@
 # Keyax Framework: Nginx + Nodejs + MongoDB on Docker Swarm cluster.
-# MongoDB version 3.4.9 on Ubuntu Core 16.04.3 LTS xenial for Docker image.
+# MongoDB version 3.6.4 on Ubuntu Core 18.04 LTS bionic for Docker image.
 
 # mongo_core
 Mongodb version 3.4.9 for Ubuntu 16.04.3 LTS xenial docker container.
@@ -9,8 +9,8 @@ Latest development release 3.5.13
 
 MongoDB document databases provide high availability and easy scalability.
 
-Supported tags keyax, ubuntu, core, 16.04, xenial and respective Dockerfile links
-3.4.9, 3.4, 3, latest (3.4/Dockerfile)
+Supported tags keyax, ubuntu, core, 18.04, bionic and respective Dockerfile links
+3.6.4, 3.6, latest (3.6/Dockerfile)
 For more information about this image and its history, please see the relevant manifest file (library/mongo). This image is updated via pull requests to the docker-library/official-images GitHub repo.
 
 For detailed information about the virtual/transfer sizes and individual layers of each of the above supported tags, please see the repos/mongo/tag-details.md file in the docker-library/repo-info GitHub repo.
@@ -86,9 +86,7 @@ mongo:<version>
 This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used both as a throw away container (mount your source code and start the container to start your app), as well as the base to build other images off of.
 
 Supported Docker versions
-This image is officially supported on Docker version 1.13.0.
-
-Support for older versions (down to 1.6) is provided on a best-effort basis.
+This image is officially supported on Docker version 18.00.
 
 Please see the Docker installation documentation for details on how to upgrade your Docker daemon.
 

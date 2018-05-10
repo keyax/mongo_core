@@ -2,10 +2,10 @@ FROM keyax/ubuntu_core
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
-      keyax.os.ver="16.04.3 xenial" \
+      keyax.os.ver="18.04 bionic" \
       keyax.vendor="Keyax" \
-      keyax.app="Mongodb 3.4.9" \
-      keyax.app.ver="2.75"
+      keyax.app="Mongodb 3.6.4" \
+      keyax.app.ver="18.05"
 
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -61,8 +61,10 @@ RUN ["/bin/bash", "-c",  "set -ex; \
       apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6;"]
 #      gpg --armor --export 0C49F3730359A14518585931BC711F9BA15703C6 | apt-key add -"]
 
-ENV MONGO_MAJOR 3.4
-ENV MONGO_VERSION 3.4.9
+ENV MONGO_MAJOR 3.6
+ENV MONGO_VERSION 3.6.4
+# ENV MONGO_MAJOR 3.4
+# ENV MONGO_VERSION 3.4.9
 #ENV MONGO_MAJOR 3.5
 #ENV MONGO_VERSION 3.5.13
 ENV MONGO_PACKAGE mongodb-org
@@ -98,7 +100,7 @@ RUN set -x \
 
 # VOLUME /data/db /data/configdb
 
-# ADD /configdb /data/configdb
+ADD /configdb /data/configdb
 
 # RedHat Warning: Transparent hugepages looks to be active and should not be.
 # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
@@ -114,12 +116,12 @@ RUN set -x \
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 ## USER mongodb
-
-EXPOSE 27017
+VOLUME /data/configdb /data/db /data/logdb
+EXPOSE 10017
 
 # COPY entrypoint.sh /home/entrypoint.sh
 # RUN chmod +x /home/entrypoint.sh
-ENV PARAMS " "
+ENV PARAMS "--auth --bind_ip_all -f /data/configdb/mongod.conf"
 ENTRYPOINT ["/data/configdb/entrypoint.sh", "mongod $PARAMS" ]
 # CMD [ "$AUTH" ]
 # Contact GitHub API Training Shop Blog About
