@@ -62,7 +62,7 @@ RUN ["/bin/bash", "-c",  "set -ex; \
 #      gpg --armor --export 0C49F3730359A14518585931BC711F9BA15703C6 | apt-key add -"]
 
 ENV MONGO_MAJOR 3.6
-ENV MONGO_VERSION 3.6.4
+ENV MONGO_VERSION 3.6.9
 # ENV MONGO_MAJOR 3.4
 # ENV MONGO_VERSION 3.4.9
 #ENV MONGO_MAJOR 3.5
@@ -72,7 +72,7 @@ ENV MONGO_PACKAGE mongodb-org
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # RUN echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
 # RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 RUN set -x \
