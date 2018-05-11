@@ -49,11 +49,11 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 ##	rm -r "$GNUPGHOME"; \
 ##	apt-key list
 
+
 # gpg keys for release 3.5.x dev & 3.6 listed at building docker
 RUN ["/bin/bash", "-c",  "set -ex; \
-            apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
-            gpg2 --armor --export B42F6819007F00F88E364FD4036A9C25BF357DD4 | apt-key add -"]
-
+            gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \
+            gpg --armor --export 58712A2291FA4AD5 | apt-key add -"]
 # to enable key & remove gpg: WARNING: options in `/root/.gnupg/gpg.conf' are not yet active during this run
 
 ## version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
@@ -72,7 +72,7 @@ ENV MONGO_PACKAGE mongodb-org
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # RUN echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
 # RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 RUN set -x \
