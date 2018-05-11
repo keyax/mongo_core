@@ -1,10 +1,10 @@
 # Keyax Framework: Nginx + Nodejs + MongoDB on Docker Swarm cluster.
 # MongoDB version 3.6.4 on Ubuntu Core 18.04 LTS bionic for Docker image.
 
-<!--# mongo_core
+[comment]: # ( mongo_core
 Mongodb version 3.4.9 for Ubuntu 16.04.3 LTS xenial docker container.
-Latest development release 3.5.13
--->
+Latest development release 3.5.13)
+
 [![](https://images.microbadger.com/badges/image/keyax/mongo_core.svg)](https://microbadger.com/images/keyax/mongo_core "Get your own image badge on microbadger.com")   [![](https://images.microbadger.com/badges/version/keyax/mongo_core.svg)](https://microbadger.com/images/keyax/mongo_core "Get your own version badge on microbadger.com")
 
 MongoDB document databases provide high availability and easy scalability.
