@@ -49,7 +49,6 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 ##	rm -r "$GNUPGHOME"; \
 ##	apt-key list
 
-
 # gpg keys for release 3.5.x dev & 3.6 listed at building docker
 RUN ["/bin/bash", "-c",  "set -ex; \
             gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \
