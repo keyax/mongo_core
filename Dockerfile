@@ -9,7 +9,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-# RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
+RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
 ### RUN apt-get update \
 ### 	&& apt-get install -y \
@@ -19,7 +19,6 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 ###  && apt-get autoremove && apt-get clean \
 # delete all the apt list files since they're big and get stale quickly
 ###  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-# this forces "apt-get update" in dependent images, which is also good
 
 # grab gosu for easy step-down from root
 # ENV GOSU_VERSION 1.7
@@ -92,21 +91,15 @@ ENV MONGO_PACKAGE mongodb-org
 
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # RUN echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
-
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" > /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
 # RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
-## from mongodb repo dev version 3.5.13
-##      --allow-unauthenticated\
-##        mongodb-org-unstable \
-## from mongodb repo production version 3.4.9
-##      --allow-unauthenticated\
-        mongodb-org \
-# from ubuntu repo version 3.2.11
-##      mongodb \
+## from mongodb repo production version 3.6
+##  --allow-unauthenticated\
+    mongodb-org \
 #		${MONGO_PACKAGE}=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-server=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
@@ -115,7 +108,6 @@ RUN set -x \
   && rm -rf /var/lib/apt/lists/* \
 # && rm -rf /var/lib/mongodb
 	&& mv /etc/mongod.conf /etc/mongod.conf.orig
-###  && echo kernel/mm/transparent_hugepage/enabled = never >> /etc/sysfs.conf \
 ##  && mkdir -p /data/db /data/configdb \
 ##	&& chown -R mongodb:mongodb /data/db /data/configdb
 
