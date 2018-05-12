@@ -51,8 +51,8 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 
 # gpg keys for release 3.5.x dev & 3.6 listed at building docker
 RUN ["/bin/bash", "-c",  "set -ex; \
-            gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 2930 ADAE 8CAF 5059 EE73  BB4B 5871 2A22 91FA 4AD5; \
-            gpg2 --armor --export 2930 ADAE 8CAF 5059 EE73  BB4B 5871 2A22 91FA 4AD5 | apt-key add -"]
+            gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5; \
+            gpg2 --armor --export 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5 | apt-key add -"]
 ##RUN ["/bin/bash", "-c",  "set -ex; \
 ##            gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 58712A2291FA4AD5; \
 ##            gpg2 --armor --export 58712A2291FA4AD5 | apt-key add -"]
