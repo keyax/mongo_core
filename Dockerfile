@@ -49,11 +49,12 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 ##	rm -r "$GNUPGHOME"; \
 ##	apt-key list
 
+SHELL ["/bin/bash", "-c"]
 RUN set -ex \
   && for key in \
-#     0C49F3730359A14518585931BC711F9BA15703C6 \
+     0C49F3730359A14518585931BC711F9BA15703C6 \
      2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5 \
-#     9DA31620334BD75D9DCB49F368818C72E52529D4 \
+     9DA31620334BD75D9DCB49F368818C72E52529D4 \
   ; do \
     gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; \
     gpg2 --armor --export $key | apt-key add - ; \
@@ -61,7 +62,6 @@ RUN set -ex \
 #    gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
 #    gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
 #    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
-#  done
 
 # gpg keys for release 3.6 & 3.5.x dev listed at building docker
 ###RUN ["/bin/bash", "-c",  "set -ex; \
