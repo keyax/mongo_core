@@ -56,6 +56,7 @@ RUN set -ex \
 #     9DA31620334BD75D9DCB49F368818C72E52529D4 \
   ; do \
     gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; \
+    gpg2 --armor --export $key | apt-key add - ; \
     done
 #    gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
 #    gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
