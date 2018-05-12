@@ -74,7 +74,7 @@ ENV MONGO_VERSION 3.6.4
 ENV MONGO_PACKAGE mongodb-org
 
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
+RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" | tee /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
 
 RUN set -x \
 	&& apt-get update \
