@@ -36,7 +36,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 #	&& apt-get purge -y --auto-remove ca-certificates wget
 
 ## ENV GPG_KEYS \
-# pub   4096R/A15703C6 2016-01-11 [expires: 2018-01-10]
+# pub   4096R/A15703C6 2016-01-11 [expires: 2018-01-10]  Mongodb 3.4
 #       Key fingerprint = 0C49 F373 0359 A145 1858  5931 BC71 1F9B A157 03C6
 # uid                  MongoDB 3.4 Release Signing Key <packaging@mongodb.com>
 ## 	0C49F3730359A14518585931BC711F9BA15703C6
@@ -51,9 +51,12 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 
 # gpg keys for release 3.5.x dev & 3.6 listed at building docker
 RUN ["/bin/bash", "-c",  "set -ex; \
-            gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 58712A2291FA4AD5; \
-            gpg2 --armor --export 58712A2291FA4AD5 | apt-key add -"]
-#           gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \
+            gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 2930 ADAE 8CAF 5059 EE73  BB4B 5871 2A22 91FA 4AD5; \
+            gpg2 --armor --export 2930 ADAE 8CAF 5059 EE73  BB4B 5871 2A22 91FA 4AD5 | apt-key add -"]
+##RUN ["/bin/bash", "-c",  "set -ex; \
+##            gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 58712A2291FA4AD5; \
+##            gpg2 --armor --export 58712A2291FA4AD5 | apt-key add -"]
+#           gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \  keyserver receive failed
 # to enable key & remove gpg: WARNING: options in `/root/.gnupg/gpg.conf' are not yet active during this run
 
 ## version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
