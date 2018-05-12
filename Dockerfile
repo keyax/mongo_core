@@ -51,9 +51,12 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 SHELL ["/bin/bash", "-c"]
 RUN set -ex \
   && for key in \
-     0C49F3730359A14518585931BC711F9BA15703C6 \
+# gpg keys for release 3.6 & 3.5.x dev listed at building docker
      2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5 \
+# gpg keys for release 4.0 listed at building docker
      9DA31620334BD75D9DCB49F368818C72E52529D4 \
+# version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
+     0C49F3730359A14518585931BC711F9BA15703C6 \
   ; do \
     gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; \
     gpg2 --armor --export $key | apt-key add - ; \
@@ -61,25 +64,6 @@ RUN set -ex \
 #   gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
 #   gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
 #   gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
-
-# gpg keys for release 3.6 & 3.5.x dev listed at building docker
-###RUN ["/bin/bash", "-c",  "set -ex; \
-###            gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5; \
-###            gpg2 --armor --export 2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5 | apt-key add -"]
-# gpg keys for release 4.0 listed at building docker
-##RUN ["/bin/bash", "-c",  "set -ex; \
-##            gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 9DA31620334BD75D9DCB49F368818C72E52529D4; \
-##            gpg2 --armor --export 9DA31620334BD75D9DCB49F368818C72E52529D4 | apt-key add -"]
-##RUN ["/bin/bash", "-c",  "set -ex; \
-##            gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 58712A2291FA4AD5; \
-##            gpg2 --armor --export 58712A2291FA4AD5 | apt-key add -"]
-#           gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58712A2291FA4AD5; \  keyserver receive failed
-# to enable key & remove gpg: WARNING: options in `/root/.gnupg/gpg.conf' are not yet active during this run
-
-## version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-##RUN ["/bin/bash", "-c",  "set -ex; \
-##      apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 0C49F3730359A14518585931BC711F9BA15703C6;"]
-##      gpg --armor --export 0C49F3730359A14518585931BC711F9BA15703C6 | apt-key add -"]
 
 ENV MONGO_MAJOR 3.6
 ENV MONGO_VERSION 3.6.4
@@ -90,15 +74,13 @@ ENV MONGO_VERSION 3.6.4
 ENV MONGO_PACKAGE mongodb-org
 
 # https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-# RUN echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.4.list
 RUN echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/$MONGO_MAJOR multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$MONGO_MAJOR.list
-# RUN echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y \
 ## from mongodb repo production version 3.6
-##  --allow-unauthenticated\
+##--allow-unauthenticated\
     mongodb-org \
 #		${MONGO_PACKAGE}=$MONGO_VERSION \
 #		${MONGO_PACKAGE}-server=$MONGO_VERSION \
