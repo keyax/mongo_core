@@ -58,9 +58,9 @@ RUN set -ex \
     gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; \
     gpg2 --armor --export $key | apt-key add - ; \
     done
-#    gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
-#    gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
-#    gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
+#   gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
+#   gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
+#   gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
 
 # gpg keys for release 3.6 & 3.5.x dev listed at building docker
 ###RUN ["/bin/bash", "-c",  "set -ex; \
