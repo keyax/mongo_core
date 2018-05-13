@@ -7,7 +7,6 @@ LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.app="Mongodb 3.6.4" \
       keyax.app.ver="18.05"
 
-
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
@@ -47,7 +46,6 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 ##	gpg --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \
 ##	rm -r "$GNUPGHOME"; \
 ##	apt-key list
-
 
 ENV GPG_KEYS \
 # gpg keys for release 3.6 & 3.5.x dev listed at building docker
@@ -113,7 +111,7 @@ ADD /configdb /data/configdb
 # Ubuntu set swappiness 0
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
-## USER mongodb
+USER mongodb
 VOLUME /data/configdb /data/db /data/logdb
 EXPOSE 10017
 
