@@ -48,22 +48,25 @@ RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 ##	rm -r "$GNUPGHOME"; \
 ##	apt-key list
 
-SHELL ["/bin/bash", "-c"]
-RUN set -ex \
-  && for key in \
+
+ENV GPG_KEYS \
 # gpg keys for release 3.6 & 3.5.x dev listed at building docker
      2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5 \
 # gpg keys for release 4.0 listed at building docker
      9DA31620334BD75D9DCB49F368818C72E52529D4 \
 # version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
      0C49F3730359A14518585931BC711F9BA15703C6 \
-  ; do \
+
+SHELL ["/bin/bash", "-c"]
+RUN set -ex; \
+    for key in $GPG_KEYS; \
+    do \
     gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; \
     gpg2 --armor --export $key | apt-key add - ; \
-    done
-#   gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" ; \
+    done;
+#   gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" || \
 #   gpg --keyserver pgp.mit.edu --recv-keys "$key" || \
-#   gpg --keyserver keyserver.pgp.com --recv-keys "$key" || \
+#   gpg --keyserver keyserver.pgp.com --recv-keys "$key"; \
 
 ENV MONGO_MAJOR 3.6
 ENV MONGO_VERSION 3.6.4
