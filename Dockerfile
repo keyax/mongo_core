@@ -55,7 +55,7 @@ ENV GPG_KEYS \
 # gpg keys for release 4.0 listed at building docker
      9DA31620334BD75D9DCB49F368818C72E52529D4 \
 # version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
-     0C49F3730359A14518585931BC711F9BA15703C6 \
+     0C49F3730359A14518585931BC711F9BA15703C6
 
 SHELL ["/bin/bash", "-c"]
 RUN set -ex; \
