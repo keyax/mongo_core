@@ -29,8 +29,7 @@ RUN set -ex; \
 ##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
-	gosu nobody true;
-#	\
+	gosu nobody true; \
 	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
 # TODO some sort of download verification here
 
