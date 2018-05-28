@@ -54,7 +54,7 @@ SHELL ["/bin/bash", "-c"]
 RUN set -ex; \
 #	export GNUPGHOME="$(mktemp -d)"; \
 	for key in $GPG_KEYS; do \
-		gpg2 --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+		gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$key"; \
     gpg2 --armor --export $key | apt-key add - ; \
 	done; \
 #	gpg2 --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \
