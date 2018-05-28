@@ -18,18 +18,16 @@ ENV JSYAML_VERSION 3.10.0
 RUN set -ex; \
 	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
-	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
-	export GNUPGHOME="$(mktemp -d)"; \
+#	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
+#	export GNUPGHOME="$(mktemp -d)"; \
 	gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
   #   gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; || \
   #   gpg2 --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" || \
   #   gpg2 --keyserver pgp.mit.edu --recv-keys "$key" || \
   #   gpg2 --keyserver keyserver.pgp.com --recv-keys "$key"; \
-  #   gpg2 --armor --export $key | apt-key add - ; \
-
-
-	gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
-	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
+      gpg2 --armor --export $key | apt-key add - ; \
+##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
+#	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
 	gosu nobody true;
 #	\
@@ -56,7 +54,7 @@ RUN set -ex; \
 	for key in $GPG_KEYS; do \
 		gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$key"; \
     gpg2 --armor --export $key | apt-key add - ; \
-	done; 
+	done;
 #	gpg2 --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \
 #	rm -r "$GNUPGHOME"; \
 #	apt-key list
