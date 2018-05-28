@@ -26,7 +26,7 @@ RUN set -ex; \
 	chmod +x /usr/local/bin/gosu; \
 	gosu nobody true; \
 	\
-	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js"; \
+	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js"; 
 # TODO some sort of download verification here
 #	apt-get purge -y --auto-remove wget
 
