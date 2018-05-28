@@ -25,15 +25,14 @@ RUN set -ex; \
   #   gpg2 --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" || \
   #   gpg2 --keyserver pgp.mit.edu --recv-keys "$key" || \
   #   gpg2 --keyserver keyserver.pgp.com --recv-keys "$key"; \
-      gpg2 --armor --export $key | apt-key add - ; \
+  gpg2 --armor --export $key | apt-key add - ; \
 ##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
 	gosu nobody true;
 #	\
-#	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
+	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
 # TODO some sort of download verification here
-#	apt-get purge -y --auto-remove wget
 
 # RUN mkdir /docker-entrypoint-initdb.d
 
@@ -105,10 +104,6 @@ RUN set -x \
 ##  && mkdir -p /data/db /data/configdb \
 ##	&& chown -R mongodb:mongodb /data/db /data/configdb
 
-# VOLUME /data/db /data/configdb
-
-ADD /configdb /data/configdb
-
 # RedHat Warning: Transparent hugepages looks to be active and should not be.
 # Please look at http://bit.ly/1ZAcLjD as for how to PERMANENTLY alter this setting.
 ## RUN echo 'always madvise [never]' > /sys/kernel/mm/transparent_hugepage/enabled
@@ -122,13 +117,19 @@ ADD /configdb /data/configdb
 # Ubuntu set swappiness 0
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
-USER mongodb
-VOLUME /data/configdb /data/db /data/logdb
 EXPOSE 10017
+# USER mongodb
+
+ADD /configdb /data/configdb
+VOLUME /data/configdb /data/db /data/logdb
+
+# COPY docker-entrypoint.sh /usr/local/bin/
+# ENTRYPOINT ["docker-entrypoint.sh"]
 
 # COPY entrypoint.sh /home/entrypoint.sh
 # RUN chmod +x /home/entrypoint.sh
 ENV PARAMS "--auth --bind_ip_all -f /data/configdb/mongod.conf"
 ENTRYPOINT ["/data/configdb/entrypoint.sh", "mongod $PARAMS" ]
 # CMD [ "$AUTH" ]
+# CMD ["mongod"]
 # Contact GitHub API Training Shop Blog About
