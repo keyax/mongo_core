@@ -117,18 +117,20 @@ RUN set -x \
 # Ubuntu set swappiness 0
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
-EXPOSE 10017
+EXPOSE 27017
 # USER mongodb
 
 ADD /configdb /data/configdb
-VOLUME /data/configdb /data/db /data/logdb
+# VOLUME /data/configdb /data/db /data/logdb
 
 # COPY docker-entrypoint.sh /usr/local/bin/
 # ENTRYPOINT ["docker-entrypoint.sh"]
 
 # COPY entrypoint.sh /home/entrypoint.sh
 # RUN chmod +x /home/entrypoint.sh
-ENV PARAMS "--auth --bind_ip_all -f /data/configdb/mongod.conf"
+# container_linux.go:265: starting container process caused "exec: \"/data/configdb/entrypoint.sh\": permission denied"
+ENV PARAMS "--bind_ip_all -f /data/configdb/mongod.conf"
+# ENV PARAMS "--auth --bind_ip_all -f /data/configdb/mongod.conf"
 ENTRYPOINT ["/data/configdb/entrypoint.sh", "mongod $PARAMS" ]
 # CMD [ "$AUTH" ]
 # CMD ["mongod"]
