@@ -39,10 +39,10 @@ ENV GPG_KEYS \
 # pub   rsa4096 2018-04-18 [SC] [expires: 2023-04-17]
 #       9DA3 1620 334B D75D 9DCB  49F3 6881 8C72 E525 29D4
 # uid           [ unknown] MongoDB 4.0 Release Signing Key <packaging@mongodb.com>
-	9DA31620334BD75D9DCB49F368818C72E52529D4 \
+	9DA31620334BD75D9DCB49F368818C72E52529D4 
 # https://docs.mongodb.com/manual/tutorial/verify-mongodb-packages/#download-then-import-the-key-file
 # gpg keys for release 3.6 & 3.5.x dev listed at building docker
-  2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
+#  2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
 # version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # 0C49F3730359A14518585931BC711F9BA15703C6
 
