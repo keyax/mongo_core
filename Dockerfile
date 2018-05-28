@@ -20,17 +20,24 @@ RUN set -ex; \
 	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
 	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
 	export GNUPGHOME="$(mktemp -d)"; \
-	gpg2 --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
+	gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
+  #   gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; || \
+  #   gpg2 --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" || \
+  #   gpg2 --keyserver pgp.mit.edu --recv-keys "$key" || \
+  #   gpg2 --keyserver keyserver.pgp.com --recv-keys "$key"; \
+  #   gpg2 --armor --export $key | apt-key add - ; \
+
+
 	gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
-	gosu nobody true; 
+	gosu nobody true;
 #	\
 #	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
 # TODO some sort of download verification here
 #	apt-get purge -y --auto-remove wget
 
-RUN mkdir /docker-entrypoint-initdb.d
+# RUN mkdir /docker-entrypoint-initdb.d
 
 ENV GPG_KEYS \
 # pub   rsa4096 2018-04-18 [SC] [expires: 2023-04-17]
