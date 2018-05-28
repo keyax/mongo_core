@@ -92,6 +92,7 @@ RUN set -x \
 ## from mongodb repo production version 3.6
 ##--allow-unauthenticated\
 ### mongodb-org \
+    libcurl3 \
 		${MONGO_PACKAGE}=$MONGO_VERSION \
 		${MONGO_PACKAGE}-server=$MONGO_VERSION \
 		${MONGO_PACKAGE}-shell=$MONGO_VERSION \
