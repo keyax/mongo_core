@@ -39,7 +39,7 @@ ENV GPG_KEYS \
 # pub   rsa4096 2018-04-18 [SC] [expires: 2023-04-17]
 #       9DA3 1620 334B D75D 9DCB  49F3 6881 8C72 E525 29D4
 # uid           [ unknown] MongoDB 4.0 Release Signing Key <packaging@mongodb.com>
-	9DA31620334BD75D9DCB49F368818C72E52529D4 
+	9DA31620334BD75D9DCB49F368818C72E52529D4
 # https://docs.mongodb.com/manual/tutorial/verify-mongodb-packages/#download-then-import-the-key-file
 # gpg keys for release 3.6 & 3.5.x dev listed at building docker
 #  2930ADAE8CAF5059EE73BB4B58712A2291FA4AD5
@@ -75,7 +75,7 @@ ENV MONGO_PACKAGE=${MONGO_PACKAGE} MONGO_REPO=${MONGO_REPO}
 # ENV MONGO_PACKAGE mongodb-org
 
 ENV MONGO_MAJOR development
-ENV MONGO_VERSION 4.0~latest
+ENV MONGO_VERSION 4.0.0~latest
 # ENV MONGO_MAJOR testing
 # ENV MONGO_VERSION 4.0.0~rc0
 # ENV MONGO_MAJOR 3.6
