@@ -26,7 +26,7 @@ RUN set -ex; \
 	chmod +x /usr/local/bin/gosu; \
 	gosu nobody true; \
 	\
-	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js"; 
+	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
 # TODO some sort of download verification here
 #	apt-get purge -y --auto-remove wget
 
@@ -45,13 +45,14 @@ ENV GPG_KEYS \
 
 SHELL ["/bin/bash", "-c"]
 RUN set -ex; \
-	export GNUPGHOME="$(mktemp -d)"; \
+#	export GNUPGHOME="$(mktemp -d)"; \
 	for key in $GPG_KEYS; do \
 		gpg2 --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
+    gpg2 --armor --export $key | apt-key add - ; \
 	done; \
-	gpg2 --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \
-	rm -r "$GNUPGHOME"; \
-	apt-key list
+#	gpg2 --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \
+#	rm -r "$GNUPGHOME"; \
+#	apt-key list
 
 #    do \
 #   gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; || \
