@@ -56,7 +56,7 @@ RUN set -ex; \
 	for key in $GPG_KEYS; do \
 		gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys "$key"; \
     gpg2 --armor --export $key | apt-key add - ; \
-	done; \
+	done; 
 #	gpg2 --export $GPG_KEYS > /etc/apt/trusted.gpg.d/mongodb.gpg; \
 #	rm -r "$GNUPGHOME"; \
 #	apt-key list
