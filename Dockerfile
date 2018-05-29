@@ -8,7 +8,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.app.ver="18.05"
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
+# RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
 # grab gosu for easy step-down from root (https://github.com/tianon/gosu/releases)
 ENV GOSU_VERSION 1.10
@@ -29,7 +29,7 @@ RUN set -ex; \
 ##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
 #	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
 	chmod +x /usr/local/bin/gosu; \
-	gosu nobody true; \
+#	gosu nobody true; \
 	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
 # TODO some sort of download verification here
 

@@ -13,9 +13,9 @@ if [ "$1" == "" ]; then
 (echo -ne 'db.getSiblingDB("admin").runCommand(' ; cat /run/secrets/kyxadmin | jq .dbsdemo | tr -d "\n" ; echo ');') | mongo
 (echo -ne 'db.getSiblingDB("admin").runCommand(' ; cat /run/secrets/kyxadmin | jq .usersadmin | tr -d "\n" ; echo ');') | mongo
 (echo -ne 'db.getSiblingDB("admin").runCommand(' ; cat /run/secrets/kyxadmin | jq .dbowner | tr -d "\n" | cat - ; echo ');') | mongo
-(echo -ne 'db.getSiblingDB("admin").runCommand(' ; cat /run/secrets/kyxadmin | jq .dbuser | tr -d "\n" && echo ');') | mongo
+(echo -ne 'db.getSiblingDB("admin").runCommand(' ; cat /run/secrets/kyxadmin | jq .dbuser | tr -d "\n" ; echo ');') | mongo
 fi
-# && command not found            ; ok 
+# && command not found  ??          ; ok 
 # {echo  ;  }  command not found  (echo  ;    )  ok
 
 #[yones@keyax50 ~ [keyaxdo]]$ docker exec  -ti d683512b6c1c  bash -c "/data/configdb/initdb.sh"
