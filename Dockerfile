@@ -46,7 +46,7 @@ ENV GPG_KEYS \
 # version 3.4.4 keys https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/
 # 0C49F3730359A14518585931BC711F9BA15703C6
 
-## SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/bash", "-c"]
 RUN set -ex; \
 #	export GNUPGHOME="$(mktemp -d)"; \
 	for key in $GPG_KEYS; do \
