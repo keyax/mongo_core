@@ -1,4 +1,4 @@
-FROM keyax/ubuntu_core
+FROM keyax/ubuntu_core:18.05
 
 LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.os="ubuntu core" \
@@ -10,28 +10,7 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 # RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
 
-# grab gosu for easy step-down from root (https://github.com/tianon/gosu/releases)
-ENV GOSU_VERSION 1.10
-# grab "js-yaml" for parsing mongod's YAML config files (https://github.com/nodeca/js-yaml/releases)
-ENV JSYAML_VERSION 3.10.0
-
-RUN set -ex; \
-	dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
-	wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch"; \
-#	wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc"; \
-#	export GNUPGHOME="$(mktemp -d)"; \
-	gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4; \
-  #   gpg2 --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys $key; || \
-  #   gpg2 --keyserver ha.pool.sks-keyservers.net --recv-keys "$key" || \
-  #   gpg2 --keyserver pgp.mit.edu --recv-keys "$key" || \
-  #   gpg2 --keyserver keyserver.pgp.com --recv-keys "$key"; \
-  gpg2 --armor --export $key | apt-key add - ; \
-##gpg2 --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu; \
-#	rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc; \
-	chmod +x /usr/local/bin/gosu; \
-  gosu nobody true; \
-	wget -O /js-yaml.js "https://github.com/nodeca/js-yaml/raw/${JSYAML_VERSION}/dist/js-yaml.js";
-# TODO some sort of download verification here
+# GOSU sent to base image
 
 # RUN mkdir /docker-entrypoint-initdb.d
 
