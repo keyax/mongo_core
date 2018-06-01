@@ -98,8 +98,8 @@ RUN set -x \
 
 # RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home nodejs
 RUN  groupadd --gid 11000 mongo; \
-     useradd  --uid 11000 --gid mongo; \
-     su - mongo;
+     useradd  --uid 11000 --gid mongo mongo; \
+     su - mongodb;
 
 EXPOSE 27017
 # USER mongodb
