@@ -97,9 +97,9 @@ RUN set -x \
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 # RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home nodejs
-RUN  groupadd --gid 11000 mongo \
-  && useradd  --uid 11000 --gid mongo \
-  && su - mongo
+RUN  groupadd --gid 11000 mongo; \
+     useradd  --uid 11000 --gid mongo; \
+     su - mongo;
 
 EXPOSE 27017
 # USER mongodb
