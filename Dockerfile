@@ -11,9 +11,9 @@ LABEL maintainer="yones.lebady AT gmail.com" \
 # RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home mongodb
 RUN  groupadd --gid 11000 kyxgrp \
   && useradd  --uid 11300 --gid kyxgrp --no-user-group -M --shell /bin/bash mongodb \
-  && mkdir -m ug=rwx -p -v /home/mongodb \
-  && chown -R kyxgrp:mongodb /home/mongodb; \
-  && su - mongodb;
+#  && mkdir -m ug=rwx -p -v /home/mongodb \
+#  && chown -R kyxgrp:mongodb /home/mongodb; \
+  && su - mongodb
 WORKDIR /home/mongodb
 
 # GOSU sent to base image
