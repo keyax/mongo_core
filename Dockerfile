@@ -99,15 +99,15 @@ RUN set -x \
 
 RUN set -ex \
   && groupadd --gid 11000 kyxgrp \
-  && useradd  --uid 11301 mongo --no-user-group -M --shell /bin/bash \
-  && useradd  --uid  1000 yones --no-user-group -M --shell /bin/bash \
-  && usermod -a -G kyxgrp mongo \
-  && usermod -a -G kyxgrp yones \
+  && useradd  --uid 11300 mongo --gid kyxgrp --create-home mongo --shell /bin/bash 
+#  && useradd  --uid  1000 yones --no-user-group -M --shell /bin/bash \
+#  && usermod -a -G kyxgrp mongo \
+#  && usermod -a -G kyxgrp yones \
 #  && getent group mongo \
-  && id -Gn mongo \
-  && mkdir -m u=rwx,g=rw,o=r -p -v /home/mongo \
-  && chown -R mongo:kyxgrp /home/mongo \
-  && ls -shal
+#  && id -Gn mongo \
+#  && mkdir -m u=rwx,g=rw,o=r -p -v /home/mongo \
+#  && chown -R mongo:kyxgrp /home/mongo \
+#  && ls -shal
 #  && su mongo
 
 USER mongo
