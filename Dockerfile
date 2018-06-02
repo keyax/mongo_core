@@ -108,7 +108,7 @@ RUN set -ex \
   && ls -shal \
   && su mongo
 
-USER mongodb
+#USER mongodb
 WORKDIR /home/mongo
 
 EXPOSE 27017
