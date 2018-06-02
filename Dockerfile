@@ -106,7 +106,7 @@ RUN set -ex \
 #  && mkdir -m ug=rwx -p -v /home/mongo \
 #  && chown -R mongo:kyxgrp /home/mongo \
   && ls -shal \
-  && su - mongo
+  && su mongo
 ###WORKDIR /home/mongodb
 
 EXPOSE 27017
