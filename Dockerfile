@@ -8,9 +8,9 @@ LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.app.ver="18.05"
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-# RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home mongodb
+# RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home mongodb  --no-user-group --shell /bin/bash
 RUN  groupadd --gid 11000 kyxgrp \
-  && useradd  --uid 11300 --gid kyxgrp --no-user-group -M --shell /bin/bash mongodb \
+  && useradd  --uid 11300 --gid kyxgrp -M mongodb \
 #  && mkdir -m ug=rwx -p -v /home/mongodb \
 #  && chown -R kyxgrp:mongodb /home/mongodb; \
   && su - mongodb
