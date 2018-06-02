@@ -102,8 +102,8 @@ RUN set -ex \
   && useradd  --uid 11300 --gid kyxgrp mongo \
   && usermod -a -G kyxgrp mongo \
   && getent group mongo \
-  && mkdir -m ug=rwx -p -v /home/mongo \
-  && chown -R mongo:kyxgrp /home/mongo \
+#  && mkdir -m ug=rwx -p -v /home/mongo \
+#  && chown -R mongo:kyxgrp /home/mongo \
   && ls -shal \
   && su - mongo
 ###WORKDIR /home/mongodb
