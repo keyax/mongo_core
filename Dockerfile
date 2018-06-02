@@ -99,7 +99,7 @@ RUN set -x \
 
 RUN set -ex \
   && groupadd --gid 11000 kyxgrp \
-  && useradd  --uid 11300 -M mongo \
+  && useradd  --uid 11300 --gid 11000 -M mongo \
   && usermod -a -G kyxgrp mongo \
   && getent passwd | sort \
   && mkdir -m ug=rwx -p -v /home/mongo \
