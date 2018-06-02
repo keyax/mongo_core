@@ -99,9 +99,9 @@ RUN set -x \
 
 RUN set -ex \
   && groupadd --gid 11000 kyxgrp \
-  && useradd  --uid 11300 mongo --no-user-group \
+  && useradd  --uid 11301 mongo --no-user-group \
   && usermod -a -G kyxgrp mongo \
-  && getent group mongo \
+#  && getent group mongo \
   && id -Gn mongo \
 #  && mkdir -m ug=rwx -p -v /home/mongo \
 #  && chown -R mongo:kyxgrp /home/mongo \
