@@ -8,7 +8,13 @@ LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.app.ver="18.05"
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-# RUN groupadd -r mongodb && useradd -r -g mongodb mongodb
+# RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home mongodb
+RUN  groupadd --gid 11000 kyxgrp \
+  && useradd  --uid 11300 --gid kyxgrp --shell /bin/bash mongodb
+RUN mkdir -m ug=rwx,o= -p -v /home/mongodb; \
+    chown -R kyxgrp:mongodb /home/mongodb; \
+    su - mongo;
+WORKDIR /home/mongodb
 
 # GOSU sent to base image
 
@@ -95,11 +101,6 @@ RUN set -x \
 # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
 # Ubuntu set swappiness 0
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
-
-# RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home nodejs
-RUN  groupadd --gid 11000 mongo; \
-     useradd  --uid 11000 --gid mongo mongo; \
-     su - mongo;
 
 EXPOSE 27017
 # USER mongodb
