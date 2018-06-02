@@ -7,15 +7,6 @@ LABEL maintainer="yones.lebady AT gmail.com" \
       keyax.app="Mongodb 3.6.4" \
       keyax.app.ver="18.05"
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-# RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home mongodb  --no-user-group --shell /bin/bash
-###RUN  groupadd --gid 11000 kyxgrp \
-###  && useradd  --uid 11300 --gid kyxgrp -M mongo \
-#  && mkdir -m ug=rwx -p -v /home/mongodb \
-#  && chown -R kyxgrp:mongodb /home/mongodb; \
-###  && su - mongodb
-###WORKDIR /home/mongodb
-
 # GOSU sent to base image
 
 # RUN mkdir /docker-entrypoint-initdb.d
@@ -101,6 +92,20 @@ RUN set -x \
 # RUN sysctl vm.swappiness=0 && echo "vm.swappiness = 0" >> /etc/sysctl.conf
 # Ubuntu set swappiness 0
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
+
+# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
+# RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home mongodb  --no-user-group --shell /bin/bash
+# SHELL ["/bin/bash", "-c"]
+
+RUN set -ex \
+  && groupadd --gid 11000 kyxgrp \
+  && useradd  --uid 11300 --gid kyxgrp -M mongo \
+#  && mkdir -m ug=rwx -p -v /home/mongodb \
+#  && chown -R kyxgrp:mongodb /home/mongodb; \
+  && su - mongo
+###WORKDIR /home/mongodb
+
+
 
 EXPOSE 27017
 # USER mongodb
