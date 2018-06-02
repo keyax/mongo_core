@@ -94,15 +94,15 @@ RUN set -x \
 ####RUN echo 'vm.swappiness = 0' >> /etc/sysctl.conf
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-# RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home mongodb  --no-user-group --shell /bin/bash
+# RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home mongodb  --no-user-group --shell /bin/bash  -M <- dont create homedir
 # SHELL ["/bin/bash", "-c"]
 
 RUN set -ex \
   && groupadd --gid 11000 kyxgrp \
-  && useradd  --uid 11300 --gid kyxgrp -M mongodb \
-#  && mkdir -m ug=rwx -p -v /home/mongodb \
-#  && chown -R kyxgrp:mongodb /home/mongodb; \
-  && su - mongodb
+  && useradd  --uid 11300 --gid kyxgrp -M mongo \
+  && mkdir -m ug=rwx -p -v /home/mongo \
+  && chown -R kyxgrp:mongo /home/mongo; \
+  && su - mongo
 ###WORKDIR /home/mongodb
 
 
