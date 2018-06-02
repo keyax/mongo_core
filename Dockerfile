@@ -13,7 +13,7 @@ RUN  groupadd --gid 11000 kyxgrp \
   && useradd  --uid 11300 --gid kyxgrp --shell /bin/bash mongodb
 RUN mkdir -m ug=rwx,o= -p -v /home/mongodb; \
     chown -R kyxgrp:mongodb /home/mongodb; \
-    su - mongo;
+    su - mongodb;
 WORKDIR /home/mongodb
 
 # GOSU sent to base image
