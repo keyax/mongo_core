@@ -103,14 +103,15 @@ RUN set -ex \
   && usermod -a -G kyxgrp mongo \
 #  && getent group mongo \
   && id -Gn mongo \
-#  && mkdir -m ug=rwx -p -v /home/mongo \
-#  && chown -R mongo:kyxgrp /home/mongo \
+  && mkdir -m ug=rwx -p -v /home/mongo \
+  && chown -R mongo:kyxgrp /home/mongo \
   && ls -shal \
   && su mongo
-###WORKDIR /home/mongodb
+
+USER mongodb
+WORKDIR /home/mongo
 
 EXPOSE 27017
-# USER mongodb
 
 ADD /configdb /data/configdb
 # VOLUME /data/configdb /data/db /data/logdb
