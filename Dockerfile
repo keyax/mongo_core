@@ -105,8 +105,8 @@ RUN set -ex \
   && id -Gn mongo \
   && mkdir -m ug=rwx -p -v /home/mongo \
   && chown -R mongo:kyxgrp /home/mongo \
-  && ls -shal \
-  && su mongo
+  && ls -shal
+#  && su mongo
 
 #USER mongodb
 WORKDIR /home/mongo
