@@ -103,12 +103,12 @@ RUN set -ex \
   && usermod -a -G kyxgrp mongo \
 #  && getent group mongo \
   && id -Gn mongo \
-  && mkdir -m ug=rwx -p -v /home/mongo \
+  && mkdir -m u=rwx,g=rw,o=r -p -v /home/mongo \
   && chown -R mongo:kyxgrp /home/mongo \
   && ls -shal
 #  && su mongo
 
-#USER mongodb
+USER mongo
 WORKDIR /home/mongo
 
 EXPOSE 27017
