@@ -99,8 +99,8 @@ RUN set -x \
 
 RUN set -ex \
   && groupadd --gid 11000 kyxgrp \
-  && useradd  --uid 11300 --gid kyxgrp --shell /bin/bash --create-home mongo 
-#  && useradd  --uid  1000 yones --no-user-group -M --shell /bin/bash \
+  && useradd  --uid 11300 --gid kyxgrp --shell /bin/bash --create-home mongo \ 
+  && useradd  --uid  1000 --gid kyxgrp --shell /bin/bash -M yones
 #  && usermod -a -G kyxgrp mongo \
 #  && usermod -a -G kyxgrp yones \
 #  && getent group mongo \
