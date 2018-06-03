@@ -99,10 +99,10 @@ RUN set -x \
 
 
 RUN set -ex \
- && echo root:passwd | chpasswd \
+ && echo root:mypass | chpasswd \
  && groupadd --gid 11000 kyxgrp \
- && useradd --uid 11301 --gid kyxgrp --shell /bin/bash --create-home mongo
-## && useradd --uid 1000 --gid kyxgrp --shell /bin/bash -M yones
+ && useradd --uid 11000 --gid kyxgrp --shell /bin/bash --create-home mongo
+## && useradd --uid 11000 --gid kyxgrp --shell /bin/bash -M yones
 #  && usermod -a -G kyxgrp mongo \
 #  && usermod -a -G kyxgrp yones \
 #  && getent group mongo \
