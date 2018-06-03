@@ -97,10 +97,11 @@ RUN set -x \
 # RUN groupadd -r nodejs && useradd -r -g nodejs nodejs --create-home mongodb  --no-user-group --shell /bin/bash  -M <- dont create homedir
 # SHELL ["/bin/bash", "-c"]
 
+
 RUN set -ex \
-  && groupadd --gid 11000 kyxgrp \
-  && useradd  --uid 11300 --gid kyxgrp --shell /bin/bash --create-home mongo \ 
-  && useradd  --uid  1000 --gid kyxgrp --shell /bin/bash -M yones
+ && groupadd --gid 11000 kyxgrp \
+ && useradd --uid 11301 --gid kyxgrp --shell /bin/bash --create-home mongo \
+ && useradd --uid 1000 --gid kyxgrp --shell /bin/bash -M yones
 #  && usermod -a -G kyxgrp mongo \
 #  && usermod -a -G kyxgrp yones \
 #  && getent group mongo \
